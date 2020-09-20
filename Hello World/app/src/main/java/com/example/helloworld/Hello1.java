@@ -63,6 +63,12 @@ public class Hello1 extends AppCompatActivity implements View.OnClickListener {
             intent = new Intent(string1);
             startActivity(intent);
         }
+        if (v.getId() == R.id.btToHello4) {
+            Intent intent;
+            String string1 = "com.example.helloworld.intent.action.H4";
+            intent = new Intent(string1);
+            startActivity(intent);
+        }
     }
     private void settupButtons() {
         Button b;
@@ -71,6 +77,8 @@ public class Hello1 extends AppCompatActivity implements View.OnClickListener {
         b = (Button) findViewById(R.id.btToHello2);
         b.setOnClickListener(this);
         b = (Button) findViewById(R.id.btToHello3);
+        b.setOnClickListener(this);
+        b = (Button) findViewById(R.id.btToHello4);
         b.setOnClickListener(this);
     }
 }
