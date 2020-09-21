@@ -1,4 +1,0 @@
-#Sun Sep 20 23:41:28 CST 2020
-base.0=D\:\\AS project\\Hello World 1\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
