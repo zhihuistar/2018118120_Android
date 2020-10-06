@@ -39,7 +39,7 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
                 Plant plant = mPlantList.get(position);
-                Toast.makeText(v.getContext(),"你点击了"+plant.getName(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(v.getContext(),"这是"+plant.getName()+"的名字",Toast.LENGTH_SHORT).show();
             }
         });
         holder.plantImage.setOnClickListener(new View.OnClickListener() {
@@ -47,7 +47,7 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
                 Plant plant = mPlantList.get(position);
-                Toast.makeText(v.getContext(),"你点击了"+plant.getName(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(v.getContext(),"这是"+plant.getName()+"的图片",Toast.LENGTH_SHORT).show();
             }
         });
         return holder;
