@@ -17,3 +17,10 @@ chapter3
 项目位置：https://github.com/zhihuistar/2018118120_Android/tree/master/chapter3
 
 实验报告：https://github.com/zhihuistar/2018118120_Android/blob/master/chapter3/Android%E4%BD%9C%E4%B8%9A3%E6%8A%A5%E5%91%8A.md
+
+chapter4
+
+项目位置：https://github.com/zhihuistar/2018118120_Android/tree/master/chapter4
+
+实验报告：https://github.com/zhihuistar/2018118120_Android/blob/master/chapter4/Android%E4%BD%9C%E4%B8%9A4%E6%8A%A5%E5%91%8A.md
+
