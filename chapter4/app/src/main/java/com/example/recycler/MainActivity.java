@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         int length = random.nextInt(20) + 1;
         StringBuilder builder = new StringBuilder();
         for(int i = 0; i < length; i++){
-            builder.append("name");
+            builder.append(name);
         }
         return builder.toString();
     }
