@@ -23,7 +23,6 @@
         android:id="@+id/edit_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="试着输入些什么"
-        android:focusable="false"/>
+        android:hint="试着输入些什么"/>
 
 </LinearLayout>
