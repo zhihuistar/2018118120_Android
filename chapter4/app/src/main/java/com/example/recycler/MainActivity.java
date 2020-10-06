@@ -42,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
             plantList.add(xiang_ri_kui);
             Plant ying_tao_zha_dan = new Plant("樱桃炸弹", R.drawable.ying_tao_zha_dan);
             plantList.add(ying_tao_zha_dan);
-            Plant mi_huo_gu = new Plant("迷惑菇", R.drawable.mi_huo_gu);
-            plantList.add(mi_huo_gu);
+            Plant xing_xing_guo = new Plant("星星果", R.drawable.xing_xing_guo);
+            plantList.add(xing_xing_guo);
         }
     }
 }
