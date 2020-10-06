@@ -3,6 +3,7 @@ package com.example.recycler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,11 +19,13 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
         View plantView;
         ImageView plantImage;
         TextView plantName;
+        EditText plantFunction;
         public ViewHolder(@NonNull View view) {
             super(view);
             plantView = view;
             plantImage = (ImageView) view.findViewById(R.id.plant_image);
             plantName = (TextView) view.findViewById(R.id.plant_name);
+            plantFunction = (EditText) view.findViewById(R.id.edit_text);
         }
     }
 
