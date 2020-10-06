@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
         initPlants();
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(layoutManager);
         PlantAdapter adapter = new PlantAdapter(plantList);
         recyclerView.setAdapter(adapter);
