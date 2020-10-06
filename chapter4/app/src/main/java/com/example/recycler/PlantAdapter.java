@@ -53,6 +53,14 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
                 Toast.makeText(v.getContext(),"这是"+plant.getName()+"的图片",Toast.LENGTH_SHORT).show();
             }
         });
+        holder.plantFunction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                Plant plant = mPlantList.get(position);
+                Toast.makeText(v.getContext(),"这是"+plant.getName()+"的功能",Toast.LENGTH_SHORT).show();
+            }
+        });
         return holder;
     }
 
