@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,10 +15,12 @@ import java.util.List;
 public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> {
     private List<Plant> mPlantList;
     static class ViewHolder extends RecyclerView.ViewHolder {
+        View plantView;
         ImageView plantImage;
         TextView plantName;
         public ViewHolder(@NonNull View view) {
             super(view);
+            plantView = view;
             plantImage = (ImageView) view.findViewById(R.id.plant_image);
             plantName = (TextView) view.findViewById(R.id.plant_name);
         }
@@ -28,9 +31,25 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
     }
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull final ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.plant_item, parent, false);
-        ViewHolder holder = new ViewHolder(view);
+        final ViewHolder holder = new ViewHolder(view);
+        holder.plantView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                Plant plant = mPlantList.get(position);
+                Toast.makeText(v.getContext(),"你点击了"+plant.getName(),Toast.LENGTH_SHORT).show();
+            }
+        });
+        holder.plantImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                Plant plant = mPlantList.get(position);
+                Toast.makeText(v.getContext(),"你点击了"+plant.getName(),Toast.LENGTH_SHORT).show();
+            }
+        });
         return holder;
     }
 
