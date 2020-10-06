@@ -61,6 +61,7 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
         Plant plant = mPlantList.get(position);
         holder.plantImage.setImageResource(plant.getImageId());
         holder.plantName.setText(plant.getName());
+        holder.plantFunction.setText(plant.getFunction());
     }
 
     @Override
