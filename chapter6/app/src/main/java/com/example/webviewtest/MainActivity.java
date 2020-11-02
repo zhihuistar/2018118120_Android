@@ -20,6 +20,10 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     TextView responseText;
@@ -33,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     public void onClick(View v){
         if(v.getId() == R.id.send_request){
-            sendRequestWithHttpUrlConnection();
+            sendRequestWithOkHttp();
         }
     }
     private void sendRequestWithHttpUrlConnection(){
@@ -69,6 +73,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if(connection != null){
                         connection.disconnect();
                     }
+                }
+            }
+        }).start();
+    }
+    private void sendRequestWithOkHttp(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    OkHttpClient client = new OkHttpClient();
+                    Request request = new Request.Builder().url("http://www.baidu.com").build();
+                    Response response = client.newCall(request).execute();
+                    String responseData = response.body().string();
+                    showResponse(responseData);
+                }catch (Exception e){
+                    e.printStackTrace();
                 }
             }
         }).start();
