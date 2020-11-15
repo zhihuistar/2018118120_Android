@@ -20,33 +20,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent("com.example.broadcasttest.MY_BROADCAST");
-                sendOrderedBroadcast(intent, null);
-            }
-        });
         intentFilter = new IntentFilter();
         intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
         networkChangeReceiver = new NetworkChangeReceiver();
         registerReceiver(networkChangeReceiver, intentFilter);
     }
+    @Override
     protected void onDestroy(){
         super.onDestroy();
         unregisterReceiver(networkChangeReceiver);
     }
     class NetworkChangeReceiver extends BroadcastReceiver{
         public void onReceive(Context context, Intent intent){
-            ConnectivityManager connectionManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo networkInfo = connectionManager.getActiveNetworkInfo();
-            if(networkInfo != null && networkInfo.isAvailable()){
-                Toast.makeText(context, "network is available", Toast.LENGTH_SHORT).show();
-            }
-            else{
-                Toast.makeText(context, "network is unavailable", Toast.LENGTH_SHORT).show();
-            }
+            Toast.makeText(context,"network changes",Toast.LENGTH_SHORT).show();
         }
     }
 }
