@@ -21,7 +21,6 @@
             android:enabled="true"
             android:exported="true">
             <intent-filter android:priority="100">
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="com.example.broadcasttest.MY_BROADCAST"/>
             </intent-filter>
         </receiver>
