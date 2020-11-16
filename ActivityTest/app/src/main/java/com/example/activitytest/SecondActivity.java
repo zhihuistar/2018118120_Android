@@ -25,4 +25,10 @@ public class SecondActivity extends AppCompatActivity {
             }
         });
     }
+    public void onBackPressed(){
+        Intent intent = new Intent();
+        intent.putExtra("data_return","Hello FirstActivity");
+        setResult(RESULT_OK,intent);
+        finish();
+    }
 }
