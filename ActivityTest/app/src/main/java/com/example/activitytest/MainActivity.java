@@ -19,10 +19,8 @@ public class MainActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String data = "Hello SecondActivity";
                 Intent intent = new Intent(MainActivity.this,SecondActivity.class);
-                intent.putExtra("extra_data",data);
-                startActivity(intent);
+                startActivityForResult(intent,1);
             }
         });
     }
