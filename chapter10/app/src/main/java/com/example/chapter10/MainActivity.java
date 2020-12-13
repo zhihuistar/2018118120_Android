@@ -53,5 +53,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
         }
+        protected void onCancelled() {
+            MainActivity.textView.setText("服务停止了！");
+        }
     }
 }
