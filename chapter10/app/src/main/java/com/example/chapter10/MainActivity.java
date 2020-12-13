@@ -21,20 +21,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         stopService.setOnClickListener(this);
     }
     public void onClick(View v) {
+        MyTask mTask = new MyTask();
         switch (v.getId()) {
             case R.id.start_service:
-                Intent startIntent = new Intent(this, MyService.class);
-                startService(startIntent);
+                mTask.execute();
                 break;
             case R.id.stop_service:
-                Intent stopIntent = new Intent(this, MyService.class);
-                stopService(stopIntent);
+                mTask.cancel(true);
                 break;
             default:
                 break;
         }
     }
-    static class Thread extends AsyncTask<Integer, Integer, Void> {
+    static class MyTask extends AsyncTask<Integer, Integer, Void> {
         protected void onPreExecute() {
             super.onPreExecute();
         }
