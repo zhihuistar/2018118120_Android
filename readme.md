@@ -48,6 +48,12 @@ https://github.com/zhihuistar/2018118120_Android/tree/master/chapter7/BroadcastB
 
 实验报告：https://github.com/zhihuistar/2018118120_Android/blob/master/chapter8/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A8.md
 
+# chapter9 AsyncTask，异步任务的隐含子线程
+
+项目位置：https://github.com/zhihuistar/2018118120_Android/tree/master/chapter9
+
+实验报告：https://github.com/zhihuistar/2018118120_Android/blob/master/chapter9/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A9.md
+
 # chapter12 最佳的UI体验——Material Design实战
 
 项目位置：https://github.com/zhihuistar/2018118120_Android/tree/master/chapter12
