@@ -14,10 +14,8 @@ public class MyService extends Service {
     }
     public void onCreate(){
         super.onCreate();
-        Log.d("MyService","执行OnCreate()方法");
     }
     public int onStartCommand(Intent intent,int flags,int startId) {
-        Log.d("MyService", "执行OnStartCommand()方法");
         new Thread(new Runnable(){
             @Override
             public void run() {
@@ -28,7 +26,6 @@ public class MyService extends Service {
         return super.onStartCommand(intent, flags, startId);
     }
     public void onDestroy(){
-        Log.d("MyService","执行OnDestroy()方法");
         super.onDestroy();
     }
 }
