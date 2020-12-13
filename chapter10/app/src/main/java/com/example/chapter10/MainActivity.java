@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return null;
         }
         protected void onProgressUpdate(Integer... values) {
-            MainActivity.textView.setText("Nice to meet you");
+            MainActivity.textView.setText("服务开始了！");
             super.onProgressUpdate(values);
         }
         protected void onPostExecute(Void aVoid) {
