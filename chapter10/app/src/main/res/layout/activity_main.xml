@@ -8,19 +8,19 @@
         android:id="@+id/start_service"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Start Service"/>
+        android:text="开始服务"/>
     <Button
         android:id="@+id/stop_service"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Stop Service"/>
+        android:text="停止服务"/>
 
     <TextView
         android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="61dp"
-        android:layout_centerInParent="true"
-        android:text="Hallo World"
-        android:textSize="20sp" />
+        android:gravity="center"
+        android:text="随时可以开始服务"
+        android:textSize="40dp" />
 
 </LinearLayout>
