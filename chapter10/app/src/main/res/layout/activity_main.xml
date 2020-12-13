@@ -21,6 +21,6 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="随时可以开始服务"
-        android:textSize="40dp" />
+        android:textSize="30dp" />
 
 </LinearLayout>
