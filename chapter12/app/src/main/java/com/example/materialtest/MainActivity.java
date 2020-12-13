@@ -15,16 +15,29 @@ import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
 
-    private Fruit[] fruits = {new Fruit("Apple", R.drawable.apple), new Fruit("Banana", R.drawable.banana)}
+    private Fruit[] fruits = {new Fruit("Apple", R.drawable.apple), new Fruit("Banana", R.drawable.banana),
+                new Fruit("Orange", R.drawable.orange), new Fruit("Watermelon", R.drawable.watermelon),
+                new Fruit("Pear", R.drawable.pear), new Fruit("Grape", R.drawable.grape),
+                new Fruit("Pineapple", R.drawable.pineapple), new Fruit("Strawberry", R.drawable.strawberry),
+                new Fruit("Cherry",R.drawable.cherry), new Fruit("Mango", R.drawable.mango)};
+
+    private List<Fruit> fruitList = new ArrayList<>();
+    private FruitAdapter adapter;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -60,7 +73,23 @@ public class MainActivity extends AppCompatActivity {
                 }).show();
             }
         });
+        initFruits();
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_View);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
+        recyclerView.setLayoutManager(layoutManager);
+        adapter = new FruitAdapter(fruitList);
+        recyclerView.setAdapter(adapter);
     }
+
+    private void initFruits(){
+        fruitList.clear();
+        for (int i = 0; i < 50; i++){
+            Random random = new Random();
+            int index = random.nextInt(fruits.length);
+            fruitList.add(fruits[index]);
+        }
+    }
+
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.toolbar, menu);
         return true;
