@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             super.onProgressUpdate(values);
         }
         protected void onPostExecute(Void aVoid) {
-            MainActivity.textView.setText("服务停止了！");
             super.onPostExecute(aVoid);
         }
     }
