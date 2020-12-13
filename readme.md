@@ -41,3 +41,9 @@
 https://github.com/zhihuistar/2018118120_Android/tree/master/chapter7/BroadcastBestPractice
 
 实验报告：https://github.com/zhihuistar/2018118120_Android/blob/master/chapter7/BroadcastBestPractice/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A7.md
+
+# chapter12 最佳的UI体验——Material Design实战
+
+项目位置：https://github.com/zhihuistar/2018118120_Android/tree/master/chapter12
+
+实验报告：https://github.com/zhihuistar/2018118120_Android/blob/master/chapter12/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A12.md
