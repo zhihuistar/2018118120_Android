@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
 
-    private Fruit[] fruits = {new Fruit(("Apple", R.drawable.apple))}
+    private Fruit[] fruits = {new Fruit("Apple", R.drawable.apple), new Fruit("Banana", R.drawable.banana)}
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
