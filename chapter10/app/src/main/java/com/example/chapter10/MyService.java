@@ -6,7 +6,7 @@ import android.os.IBinder;
 import android.util.Log;
 
 public class MyService extends Service {
-    private MainActivity.Thread thread;
+    private MainActivity.MyTask thread;
     public MyService() {
     }
     public IBinder onBind(Intent intent) {
@@ -19,7 +19,7 @@ public class MyService extends Service {
         new Thread(new Runnable(){
             @Override
             public void run() {
-                thread = new MainActivity.Thread();
+                thread = new MainActivity.MyTask();
                 thread.execute();
             }
         }).start();
