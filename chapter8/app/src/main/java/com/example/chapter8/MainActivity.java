@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         while(true){
                             n++;
                             Message message = new Message();
-                            String string = "线程号 : " + Thread.currentThread().getId() + "\n完成的任务数 : " + n;
+                            String string = "线程号 : " + Thread.currentThread().getId() + "\n执行完成任务数 : " + n;
                             message.obj = string;
                             handler.sendMessage(message);
                             try {
