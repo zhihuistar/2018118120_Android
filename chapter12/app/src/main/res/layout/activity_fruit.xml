@@ -11,7 +11,7 @@
         android:layout_height="250dp">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collapsingToolbar"
+            android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
@@ -55,7 +55,7 @@
                 app:cardCornerRadius="4dp">
 
                 <TextView
-                    android:id="@+id/fruitContentText"
+                    android:id="@+id/fruit_content_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"/>
