@@ -11,7 +11,7 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="点我加载"/>
+        android:text="点击加载"/>
 
     <TextView
         android:id="@+id/text"
@@ -19,7 +19,7 @@
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="还没开始加载!" />
+        android:text="随时可以加载!" />
 
     <ProgressBar
         android:layout_below="@+id/text"
