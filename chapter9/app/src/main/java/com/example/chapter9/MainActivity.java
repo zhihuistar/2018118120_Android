@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.setTitle("模拟加载");
         button = (Button) findViewById(R.id.button);
         cancel = (Button) findViewById(R.id.cancel);
         text = (TextView) findViewById(R.id.text);
