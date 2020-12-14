@@ -54,6 +54,12 @@ https://github.com/zhihuistar/2018118120_Android/tree/master/chapter7/BroadcastB
 
 实验报告：https://github.com/zhihuistar/2018118120_Android/blob/master/chapter9/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A9.md
 
+# chapter10 启动和停止服务，服务代码运行在显示子线程
+
+项目位置：https://github.com/zhihuistar/2018118120_Android/tree/master/chapter10
+
+实验报告：https://github.com/zhihuistar/2018118120_Android/blob/master/chapter10/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A10.md
+
 # chapter12 最佳的UI体验——Material Design实战
 
 项目位置：https://github.com/zhihuistar/2018118120_Android/tree/master/chapter12
