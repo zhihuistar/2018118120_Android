@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.setTitle("服务与线程");
         textView = (TextView) findViewById(R.id.text);
         Button startService = (Button) findViewById(R.id.start_service);
         Button stopService = (Button) findViewById(R.id.stop_service);
