@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         switch (v.getId()){
             case R.id.start_download:
-                String url = "https://raw.githubusercontent.com/guolindev/eclipse/master/eclipse-inst-win64.exe";
+                String url = "https://www.gta5-mods.com/vehicles/lamborghini-reventon/download/53300";
                 downloadBinder.startDownload(url);
                 break;
             case R.id.pause_download:
