@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.setTitle("ServiceBestPractice");
         Button startDownload = (Button) findViewById(R.id.start_download);
         Button pauseDownload = (Button) findViewById(R.id.pause_download);
         Button cancelDownload = (Button) findViewById(R.id.cancel_download);
