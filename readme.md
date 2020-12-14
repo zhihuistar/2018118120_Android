@@ -60,6 +60,12 @@ https://github.com/zhihuistar/2018118120_Android/tree/master/chapter7/BroadcastB
 
 实验报告：https://github.com/zhihuistar/2018118120_Android/blob/master/chapter10/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A10.md
 
+# chapter11 子服务绑定，子服务代码运行在异步任务
+
+项目位置：https://github.com/zhihuistar/2018118120_Android/tree/master/chapter11
+
+实验报告：https://github.com/zhihuistar/2018118120_Android/blob/master/chapter11/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A11.md
+
 # chapter12 最佳的UI体验——Material Design实战
 
 项目位置：https://github.com/zhihuistar/2018118120_Android/tree/master/chapter12
