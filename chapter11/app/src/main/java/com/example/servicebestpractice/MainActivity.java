@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         switch (v.getId()){
             case R.id.start_download:
-                String url = "https://www.gta5-mods.com/vehicles/lamborghini-reventon/download/53300";
+                String url = "https://files.gta5-mods.com/uploads/lamborghini-reventon/f02f23-Lamborghini_Renventon_by_SCRAT.zip";
                 downloadBinder.startDownload(url);
                 break;
             case R.id.pause_download:
