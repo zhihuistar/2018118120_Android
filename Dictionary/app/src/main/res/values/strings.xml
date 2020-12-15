@@ -5,4 +5,6 @@
     <string name="main_tv_bushou" translatable="false">部首查询</string>
     <string name="main_tv_chengyu" translatable="false">成语查询</string>
     <string name="main_tv_tuwen" translatable="false">图文识字</string>
+    <string name="main_tv_yiju" translatable="false">每日一句</string>
+    <string name="main_tv_yiju2" translatable="false">你每天都会忘记千万件事，何不把这件也忘了呢？</string>
 </resources>
