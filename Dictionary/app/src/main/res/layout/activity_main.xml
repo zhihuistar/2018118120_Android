@@ -46,4 +46,35 @@
             android:layout_marginRight="15dp"/>
     </RelativeLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/white"
+        android:weightSum="4">
+        <TextView
+            android:id="@+id/main_tv_pinyin"
+            style="@style/mainTvStyle"
+            android:drawableTop="@mipmap/m_pinyin"
+            android:text="@string/main_tv_pinyin"/>
+        <TextView
+            android:id="@+id/main_tv_bushou"
+            style="@style/mainTvStyle"
+            android:drawableTop="@mipmap/m_bushou"
+            android:text="@string/main_tv_bushou"/>
+        <TextView
+            android:id="@+id/main_tv_chengyu"
+            style="@style/mainTvStyle"
+            android:drawableTop="@mipmap/m_chengyu"
+            android:text="@string/main_tv_chengyu"/>
+        <TextView
+            android:id="@+id/main_tv_tuwen"
+            style="@style/mainTvStyle"
+            android:drawableTop="@mipmap/m_xiangji"
+            android:text="@string/main_tv_tuwen"/>
+    </LinearLayout>
+
 </LinearLayout>
