@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Dictionary</string>
+    <string name="app_name" translatable="false">中华字典</string>
+    <string name="main_et_hint" translatable="false">请输入查询汉字...</string>
+    <string name="main_tv_pinyin" translatable="false">拼音查询</string>
+    <string name="main_tv_bushou" translatable="false">部首查询</string>
+    <string name="main_tv_chengyu" translatable="false">成语查询</string>
+    <string name="main_tv_tuwen" translatable="false">图文识字</string>
 </resources>
