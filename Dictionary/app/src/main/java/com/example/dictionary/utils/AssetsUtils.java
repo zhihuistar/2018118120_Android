@@ -27,6 +27,5 @@ public class AssetsUtils {
             e.printStackTrace();
         }
         return baos.toString();
-
     }
 }
