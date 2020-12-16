@@ -1,10 +1,8 @@
 package com.example.dictionary;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-public class SearchPinyinActivity extends AppCompatActivity {
+public class SearchPinyinActivity extends BaseSearchActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
