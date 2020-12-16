@@ -34,8 +34,12 @@ public class MainActivity extends AppCompatActivity {
             case R.id.main_iv_search:
                 break;
             case R.id.main_tv_pinyin:
+                intent.setClass(this,SearchPinyinActivity.class);
+                startActivity(intent);
                 break;
             case R.id.main_tv_bushou:
+                intent.setClass(this,SearchBuShouActivity.class);
+                startActivity(intent);
                 break;
             case R.id.main_tv_chengyu:
                 break;
