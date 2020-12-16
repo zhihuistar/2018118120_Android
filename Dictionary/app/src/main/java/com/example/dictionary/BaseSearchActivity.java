@@ -21,7 +21,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshGridView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BaseSearchActivity {
+public class BaseSearchActivity extends BaseActivity{
     ExpandableListView exLv;
     PullToRefreshGridView pullGv;
     TextView titleTv;
