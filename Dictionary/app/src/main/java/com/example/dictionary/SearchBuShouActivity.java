@@ -1,4 +1,4 @@
 package com.example.dictionary;
 
-public class SearchBuShouActivity {
+public class SearchBuShouActivity extends BaseSearchActivity {
 }
