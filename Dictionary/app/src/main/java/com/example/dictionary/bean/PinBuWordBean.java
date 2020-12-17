@@ -113,6 +113,19 @@ public class PinBuWordBean {
             private String bushou;
             private String bihua;
 
+            public ListBean(String id, String zi, String py, String wubi, String pinyin, String bushou, String bihua) {
+                this.id = id;
+                this.zi = zi;
+                this.py = py;
+                this.wubi = wubi;
+                this.pinyin = pinyin;
+                this.bushou = bushou;
+                this.bihua = bihua;
+            }
+
+            public ListBean() {
+            }
+
             public String getId() {
                 return id;
             }
