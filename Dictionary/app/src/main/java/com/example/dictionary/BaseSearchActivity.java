@@ -115,9 +115,7 @@ public class BaseSearchActivity extends BaseActivity{
             }
         }).start();
     }
-    /**
-     * 更新GridView当中的数据，提示适配器重新加载
-     * */
+    //更新GridView当中的数据，提示适配器重新加载
     public void refreshDataByGV(List<PinBuWordBean.ResultBean.ListBean> list) {
         if (page == 1) {   //加载了新的拼音或者部首对应的集合
             gridDatas.clear();
@@ -131,15 +129,13 @@ public class BaseSearchActivity extends BaseActivity{
         }
     }
 
-    /**
-     *  设置ExpandListView的监听方法
-     * */
+    //设置ExpandListView的监听方法
     public void setExLvListener(final int type) {
         exLv.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
                 adapter.setSelectGroupPos(groupPosition);
-//                获取被点击位置的内容
+                //获取被点击位置的内容
                 selGroupPos = groupPosition;
                 int groupSize = childDatas.get(selGroupPos).size();
                 if (groupSize<=selChildPos){
@@ -166,9 +162,7 @@ public class BaseSearchActivity extends BaseActivity{
             }
         });
     }
-    /**
-     * 改变了左边的选中，从网上获取对应选中的结果，显示在右边
-     * */
+    //改变了左边的选中，从网上获取对应选中的结果，显示在右边
     private void getDataAlterWord(int type) {
         List<PinBuBean.ResultBean> groupList = childDatas.get(selGroupPos);  //获取选中组
         page = 1;
@@ -183,34 +177,33 @@ public class BaseSearchActivity extends BaseActivity{
             url = URLUtils.getBushouurl(word,page,pagesize);
         }
         loadData(url);
-
     }
 
     public void initData(String assetsName,int type) {
         /**
-         * 读取Assets文件夹昂中的数据，使用Gson解析，将数据分组存储到二维列表当中
+         * 读取Assets文件夹中的数据，使用Gson解析，将数据分组存储到二维列表当中
          * @param assetsName 文件名称
          * @param type 文件类型   pinyin--0    bushou--1
-         * */
+         **/
         groupDatas = new ArrayList<>();
         childDatas = new ArrayList<>();
         String json = AssetsUtils.getAssetsContent(this, assetsName);
         if (!TextUtils.isEmpty(json)) {
             PinBuBean pinBuBean = new Gson().fromJson(json, PinBuBean.class);
-            List<PinBuBean.ResultBean> list = pinBuBean.getResult();
-//            整理数据
-            List<PinBuBean.ResultBean>grouplist = new ArrayList<>(); //声明每组包含的元素集合
+            List<PinBuBean.ResultBean>list = pinBuBean.getResult();
+            //整理数据
+            List<PinBuBean.ResultBean>grouplist = new ArrayList<>();    //声明每组包含的元素集合
             for (int i = 0; i < list.size(); i++) {
                 PinBuBean.ResultBean bean = list.get(i);   // id,pinyin_key,pinyi
                 if (type == CommonUtils.TYPE_PINYIN) {
                     String pinyin_key = bean.getPinyin_key();  //获取大写字母
                     if (!groupDatas.contains(pinyin_key)) {   //判断是否存在于分组的列表当中
                         groupDatas.add(pinyin_key);
-//                        说明上一个拼音的已经全部录入到grouplist当中了，可以将上一个拼音的集合添加到childDatas
+                        //说明上一个拼音的已经全部录入到grouplist当中了，可以将上一个拼音的集合添加到childDatas
                         if (grouplist.size()>0) {
                             childDatas.add(grouplist);
                         }
-//                        既然是新的一组，就要创建一个对应的新的子列表
+                        //开启新的一组，创建一个对应的新的子列表
                         grouplist = new ArrayList<>();
                         grouplist.add(bean);
                     }else{
@@ -220,19 +213,19 @@ public class BaseSearchActivity extends BaseActivity{
                     String bihua = bean.getBihua();
                     if (!groupDatas.contains(bihua)) {
                         groupDatas.add(bihua);
-//                        新的一组，把上一组进行添加
+                        //新的一组，把上一组进行添加
                         if (grouplist.size()>0) {
                             childDatas.add(grouplist);
                         }
-//                        新的一组，新创建子列表
+                        //新的一组，新创建子列表
                         grouplist = new ArrayList<>();
                         grouplist.add(bean);
                     }else{
-                        grouplist.add(bean);//当前笔画存在，就不用向组当中添加了
+                        grouplist.add(bean);    //当前笔画存在，就不用向组当中添加了
                     }
                 }
             }
-//            循环结束之后，最后一组并没有添加进去，所以需要手动添加
+            //循环结束之后，最后一组并没有添加进去，所以需要手动添加
             childDatas.add(grouplist);
 
             adapter = new SearchLeftAdapter(this, groupDatas, childDatas, type);
