@@ -32,6 +32,12 @@ public class MainActivity extends AppCompatActivity {
             case R.id.main_iv_setting:
                 break;
             case R.id.main_iv_search:
+                String text = ziEt.getText().toString();
+                if (!TextUtils.isEmpty(text)) {
+                    intent.setClass(this,WordInfoActivity.class);
+                    intent.putExtra("zi",text);
+                    startActivity(intent);
+                }
                 break;
             case R.id.main_tv_pinyin:
                 intent.setClass(this,SearchPinyinActivity.class);
