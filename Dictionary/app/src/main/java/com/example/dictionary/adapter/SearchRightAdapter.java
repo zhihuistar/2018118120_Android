@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.dictionary.R;
 import com.example.dictionary.bean.PinBuWordBean;
 
 import java.util.List;

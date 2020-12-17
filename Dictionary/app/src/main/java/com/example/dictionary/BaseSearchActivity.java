@@ -64,7 +64,7 @@ public class BaseSearchActivity extends BaseActivity{
     }
     //    设置GridView的监听器
     public void setGVListener(final int type) {
-//        上拉加载的监听器
+        //上拉加载的监听器
         pullGv.setMode(PullToRefreshBase.Mode.PULL_FROM_END);
         pullGv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<GridView>() {
             @Override
