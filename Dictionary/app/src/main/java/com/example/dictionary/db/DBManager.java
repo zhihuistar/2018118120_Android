@@ -61,7 +61,7 @@ public class DBManager {
         int start = (page-1)*pagesize;
         int end = page*pagesize;
         String type1 = py+",%";
-        String type2 = "%,"+py+",%";
+        String type2 = "%,"+py+",%";    //之所以加入三种type，是因为多音字可能导致缓存出错
         String type3 = "%,"+py;
         Cursor cursor = db.rawQuery(sql, new String[]{py,type1,type2,type3, start + "", end + ""});     //+""可转换为String类型
         while (cursor.moveToNext()) {
