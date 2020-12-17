@@ -30,4 +30,13 @@
         <item name="android:background">@color/white</item>
     </style>
 
+    <!--文字详情页面部首，五笔，笔画的TextView样式-->
+    <style name="wordTvStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
 </resources>
