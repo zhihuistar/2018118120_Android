@@ -14,6 +14,7 @@ import com.example.dictionary.adapter.SearchLeftAdapter;
 import com.example.dictionary.adapter.SearchRightAdapter;
 import com.example.dictionary.bean.PinBuBean;
 import com.example.dictionary.bean.PinBuWordBean;
+import com.example.dictionary.db.DBManager;
 import com.example.dictionary.utils.AssetsUtils;
 import com.example.dictionary.utils.CommonUtils;
 import com.example.dictionary.utils.URLUtils;
@@ -53,23 +54,21 @@ public class BaseSearchActivity extends BaseActivity{
         initGridDatas();
     }
 
-    /**
-     * 初始化GridView的数据源
-     * */
+    //初始化GridView的数据源
     public void initGridDatas() {
         gridDatas = new ArrayList<>();
-//        设置适配器
+        //设置适配器
         gridAdapter = new SearchRightAdapter(this, gridDatas);
         pullGv.setAdapter(gridAdapter);
     }
-    //    设置GridView的监听器
+    //设置GridView的监听器
     public void setGVListener(final int type) {
         //上拉加载的监听器
         pullGv.setMode(PullToRefreshBase.Mode.PULL_FROM_END);
         pullGv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<GridView>() {
             @Override
             public void onRefresh(PullToRefreshBase<GridView> refreshView) {
-//                判断当前加载的页数，是否小于总页数
+                //判断当前加载的页数，是否小于总页数
                 if(page<totalpage){
                     page++;
                     if (type == CommonUtils.TYPE_PINYIN) {
@@ -83,11 +82,11 @@ public class BaseSearchActivity extends BaseActivity{
                 }
             }
         });
-//        点击每一项，能够跳转到详情页面的监听
+        //点击每一项，能够跳转到详情页面的监听
         pullGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                跳转到文字查询详情页面
+                //跳转到文字查询详情页面
                 PinBuWordBean.ResultBean.ListBean bean = gridDatas.get(position);
                 String zi = bean.getZi();
                 Intent intent = new Intent(getBaseContext(), WordInfoActivity.class);
@@ -97,23 +96,17 @@ public class BaseSearchActivity extends BaseActivity{
         });
 
     }
-    /**
-     * 加载数据成功时，会调用的方法，因为JSON数据格式相同，解析到相同的集合里，所以就将代码到父类当中编写
-     * */
+    //加载数据成功时会调用的方法，因为JSON数据格式相同，解析到相同的集合里，所以就将代码到父类当中编写
     @Override
     public void onSuccess(String result) {
         PinBuWordBean bean = new Gson().fromJson(result, PinBuWordBean.class);
         PinBuWordBean.ResultBean resultBean = bean.getResult();
         totalpage = resultBean.getTotalpage();   //将当前获取数据的总页数进行保存
         List<PinBuWordBean.ResultBean.ListBean> list = resultBean.getList();
-//        将数据进行加载
-        refreshDataByGV(list);
-//        将加载到的网络数据写入到数据库当中
-        writeDBByThread(list);
+        refreshDataByGV(list);     //将数据进行加载
+        writeDBByThread(list);     //将加载到的网络数据写入到数据库当中
     }
-    /**
-     * @des 将网络数据保存到数据库当中，为了避免ANR，就使用子线程，完成操作
-     * */
+    //@des 将网络数据保存到数据库当中，为了避免ANR，就使用子线程，完成操作
     public void writeDBByThread(final List<PinBuWordBean.ResultBean.ListBean> list) {
         new Thread(new Runnable() {
             @Override
