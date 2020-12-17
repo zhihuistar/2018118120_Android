@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -110,17 +111,16 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void infoPopText(final String result) {
-        alertText("", result);
-    }
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // 识别成功回调，通用文字识别
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_GENERAL_BASIC && resultCode == Activity.RESULT_OK) {
             RecognizeService.recGeneralBasic(this, FileUtil.getSaveFile(getApplicationContext()).getAbsolutePath(),
                     new RecognizeService.ServiceListener() {
                         @Override
                         public void onResult(String result) {
-                            infoPopText(result);
+                            //result是识别出的字符串，可以将字符串传递给下一个界面
+                            Log.d("animee", "onResult: result===" + result);
                         }
                     });
         }
