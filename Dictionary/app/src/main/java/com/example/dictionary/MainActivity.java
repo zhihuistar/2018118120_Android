@@ -18,8 +18,14 @@ import com.baidu.ocr.sdk.OnResultListener;
 import com.baidu.ocr.sdk.exception.OCRError;
 import com.baidu.ocr.sdk.model.AccessToken;
 import com.baidu.ocr.ui.camera.CameraActivity;
+import com.example.dictionary.bean.TuWenBean;
 import com.example.dictionary.utils.FileUtil;
+import com.example.dictionary.utils.PatternUtils;
 import com.example.dictionary.utils.RecognizeService;
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     TextView pyTv,bsTv,cyuTv,twenTv,juziTv;
@@ -41,9 +47,7 @@ public class MainActivity extends AppCompatActivity {
         return hasGotToken;
     }
 
-    /**
-     * 用明文ak，sk初始化
-     */
+    //用明文ak，sk初始化
     private void initAccessTokenWithAkSk() {
         OCR.getInstance(this).initAccessTokenWithAkSk(new OnResultListener<AccessToken>() {
             @Override
@@ -81,8 +85,35 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onResult(String result) {
                             //result是识别出的字符串，可以将字符串传递给下一个界面
-                            Log.d("animee", "onResult: result===" + result);
-                            //{"words_result":[{"words":"悯农"},{"words":"锄禾日当午"},{"words":"汗滴禾下土。"},{"words":"谁知盘中餐"},{"words":"粒粒皆辛苦。"}],"log_id":1339544087568580608,"words_result_num":5,"direction":0}
+                            TuWenBean wenBean = new Gson().fromJson(result, TuWenBean.class);
+                            List<TuWenBean.WordsResultBean> wordsList = wenBean.getWords_result();
+                            //将提取到的有用的汉字存放到集合当中，传递到下一个界面
+                            ArrayList<String> list = new ArrayList<>();
+                            if (wordsList!=null&&wordsList.size()!=0) {
+                                for (int i = 0; i < wordsList.size(); i++) {
+                                    TuWenBean.WordsResultBean bean = wordsList.get(i);
+                                    String words = bean.getWords();
+                                    String res = PatternUtils.removeAll(words);
+                                    //将字符串当中每一个字符串都添加到集合当中
+                                    for (int j = 0; j < res.length(); j++) {
+                                        String s = String.valueOf(res.charAt(j));
+                                        //添加集合之前，先判断一下，集合是否包括这个汉字
+                                        if (!list.contains(s)) {
+                                            list.add(s);
+                                        }
+                                    }
+                                }
+                                //判断是否有可识别的文字
+                                if (list.size()==0) {
+                                    Toast.makeText(MainActivity.this,"无法识别图片中的文字！",Toast.LENGTH_SHORT).show();
+                                }else{
+                                    Intent it = new Intent(MainActivity.this, IdentifyImgActivity.class);
+                                    Bundle bundle = new Bundle();
+                                    bundle.putStringArrayList("wordlist",list);
+                                    it.putExtras(bundle);
+                                    startActivity(it);
+                                }
+                            }
                         }
                     });
         }
