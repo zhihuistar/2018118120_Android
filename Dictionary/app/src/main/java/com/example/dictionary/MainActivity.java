@@ -121,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onResult(String result) {
                             //result是识别出的字符串，可以将字符串传递给下一个界面
                             Log.d("animee", "onResult: result===" + result);
+                            //{"words_result":[{"words":"悯农"},{"words":"锄禾日当午"},{"words":"汗滴禾下土。"},{"words":"谁知盘中餐"},{"words":"粒粒皆辛苦。"}],"log_id":1339544087568580608,"words_result_num":5,"direction":0}
                         }
                     });
         }
