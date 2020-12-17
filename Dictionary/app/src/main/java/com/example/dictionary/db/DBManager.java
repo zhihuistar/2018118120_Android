@@ -4,9 +4,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.dictionary.bean.PinBuWordBean;
+import com.example.dictionary.bean.WordBean;
 import com.example.dictionary.utils.CommonUtils;
 
 import java.util.ArrayList;
@@ -18,16 +20,13 @@ public class DBManager {
         DBOpenHelper helper = new DBOpenHelper(context);
         db = helper.getWritableDatabase();
     }
-    /**
-     * 插入很多数据到pywordtb表当中
-     * 插入了多个对象所在的集合
-     * */
-    public static void insertListToPywordtb(List<PinBuWordBean.ResultBean.ListBean> list){
+    //插入很多数据到pywordtb表当中，插入了多个对象所在的集合
+    public static void insertListToPywordtb(List<PinBuWordBean.ResultBean.ListBean>list){
         if (list.size()>0) {
             for (int i = 0; i < list.size(); i++) {
-//                获取集合当中的每一个bean对象
+                //获取集合当中的每一个bean对象
                 PinBuWordBean.ResultBean.ListBean bean = list.get(i);
-//                调用单个对象插入的方法
+                //调用单个对象插入的方法
                 try {
                     insertWordToPywordtb(bean);
                 }catch (Exception e){
@@ -36,10 +35,7 @@ public class DBManager {
             }
         }
     }
-    /*
-     * 执行插入数据到pywordtb表当中
-     * 插入一个对象的方法
-     * */
+    //执行插入数据到pywordtb表当中，插入一个对象的方法
     public static void insertWordToPywordtb(PinBuWordBean.ResultBean.ListBean bean){
         ContentValues values = new ContentValues();
         values.put("id",bean.getId());
@@ -51,9 +47,7 @@ public class DBManager {
         values.put("bihua",bean.getBihua());
         long loc = db.insert(CommonUtils.TABLE_PYWORDTB, null, values);
     }
-    /**
-     * 查询pywordtb表当中指定拼音的数据
-     * */
+    //查询pywordtb表当中指定拼音的数据
     public static List<PinBuWordBean.ResultBean.ListBean>queryPyWordFromPywordtb(String py,int page,int pagesize){
         List<PinBuWordBean.ResultBean.ListBean>list = new ArrayList<>();
         // 0,48   48,48+48    96,96+48
@@ -63,7 +57,7 @@ public class DBManager {
         String type1 = py+",%";
         String type2 = "%,"+py+",%";    //之所以加入三种type，是因为多音字可能导致缓存出错
         String type3 = "%,"+py;
-        Cursor cursor = db.rawQuery(sql, new String[]{py,type1,type2,type3, start + "", end + ""});     //+""可转换为String类型
+        Cursor cursor = db.rawQuery(sql, new String[]{py,type1,type2,type3, start + "", end + ""});
         while (cursor.moveToNext()) {
             String id = cursor.getString(cursor.getColumnIndex("id"));
             String zi = cursor.getString(cursor.getColumnIndex("zi"));
@@ -76,5 +70,91 @@ public class DBManager {
             list.add(bean);
         }
         return list;
+    }
+
+    //查询pywordtb表当中指定部首的数据
+    public static List<PinBuWordBean.ResultBean.ListBean>queryBsWordFromPywordtb(String bs,int page,int pagesize){
+        List<PinBuWordBean.ResultBean.ListBean>list = new ArrayList<>();
+        // 0,48   48,48+48    96,96+48
+        String sql = "select * from pywordtb where bushou=? limit ?,?";
+        int start = (page-1)*pagesize;
+        int end = page*pagesize;
+        Cursor cursor = db.rawQuery(sql, new String[]{bs, start + "", end + ""});
+        while (cursor.moveToNext()) {
+            String id = cursor.getString(cursor.getColumnIndex("id"));
+            String zi = cursor.getString(cursor.getColumnIndex("zi"));
+            String py1 = cursor.getString(cursor.getColumnIndex("py"));
+            String wubi = cursor.getString(cursor.getColumnIndex("wubi"));
+            String pinyin = cursor.getString(cursor.getColumnIndex("pinyin"));
+            String bushou = cursor.getString(cursor.getColumnIndex("bushou"));
+            String bihua = cursor.getString(cursor.getColumnIndex("bihua"));
+            PinBuWordBean.ResultBean.ListBean bean = new PinBuWordBean.ResultBean.ListBean(id, zi, py1, wubi, pinyin, bushou, bihua);
+            list.add(bean);
+        }
+        return list;
+    }
+    //@des 插入汉字到汉字详情表当中
+    public static void insertWordToWordtb(WordBean.ResultBean bean){
+        ContentValues values = new ContentValues();
+        values.put("id",bean.getId());
+        values.put("zi",bean.getZi());
+        values.put("py",bean.getPy());
+        values.put("wubi",bean.getWubi());
+        values.put("pinyin",bean.getPinyin());
+        values.put("bushou",bean.getBushou());
+        values.put("bihua",bean.getBihua());
+        //将集合转化成字符串类型进行插入
+        String jijie = listToString(bean.getJijie());
+        values.put("jijie",jijie);
+        String xiangjie = listToString(bean.getXiangjie());
+        values.put("xiangjie",xiangjie);
+        db.insert(CommonUtils.TABLE_WORDTB,null,values);
+    }
+    //根据传入的汉字，查找对应信息组成的对象
+    public static WordBean.ResultBean queryWordFromWordtb(String word){
+        String sql = "select * from wordtb where zi=?";
+        Cursor cursor = db.rawQuery(sql, new String[]{word});
+        if (cursor.moveToFirst()) {
+            String id = cursor.getString(cursor.getColumnIndex("id"));
+            String zi = cursor.getString(cursor.getColumnIndex("zi"));
+            String py1 = cursor.getString(cursor.getColumnIndex("py"));
+            String wubi = cursor.getString(cursor.getColumnIndex("wubi"));
+            String pinyin = cursor.getString(cursor.getColumnIndex("pinyin"));
+            String bushou = cursor.getString(cursor.getColumnIndex("bushou"));
+            String bihua = cursor.getString(cursor.getColumnIndex("bihua"));
+            String jijie = cursor.getString(cursor.getColumnIndex("jijie"));
+            String xiangjie = cursor.getString(cursor.getColumnIndex("xiangjie"));
+            List<String> jijielist = stringToList(jijie);
+            List<String> xiangxilist = stringToList(xiangjie);
+            WordBean.ResultBean bean = new WordBean.ResultBean(id, zi, py1, wubi, pinyin, bushou, bihua, jijielist, xiangxilist);
+            return bean;
+        }
+        return null;
+    }
+    //将字符串转换成List集合的方法
+    public static List<String>stringToList(String msg){
+        List<String>list = new ArrayList<>();
+        if (!TextUtils.isEmpty(msg)) {
+            String[] arr = msg.split("\\|");
+            for (int i = 0; i < arr.length; i++) {
+                String s = arr[i].trim();
+                if (!TextUtils.isEmpty(s)) {
+                    list.add(s);
+                }
+            }
+        }
+        return list;
+    }
+    //将List集合转化成字符串的方法
+    public static String listToString(List<String>list){
+        StringBuilder sb = new StringBuilder();
+        if (list!=null&&!list.isEmpty()) {
+            for (int i = 0; i < list.size(); i++) {
+                String msg = list.get(i);
+                msg+="|";
+                sb.append(msg);
+            }
+        }
+        return sb.toString();
     }
 }
