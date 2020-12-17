@@ -11,10 +11,13 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.example.dictionary.adapter.SearchLeftAdapter;
+import com.example.dictionary.adapter.SearchRightAdapter;
 import com.example.dictionary.bean.PinBuBean;
+import com.example.dictionary.bean.PinBuWordBean;
 import com.example.dictionary.utils.AssetsUtils;
 import com.example.dictionary.utils.CommonUtils;
 import com.example.dictionary.utils.URLUtils;
+import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshGridView;
 
@@ -26,7 +29,7 @@ public class BaseSearchActivity extends BaseActivity{
     PullToRefreshGridView pullGv;
     TextView titleTv;
     List<String> groupDatas;  //表示分组的列表   [A,B,C,D.....]
-    List<List<PinBuBean.ResultBean>>childDatas;  //将魅族对应的子类i列表存放到这个集合
+    List<List<PinBuBean.ResultBean>>childDatas;  //将每组对应的子类列表存放到这个集合
     SearchLeftAdapter adapter;
     int selGroupPos = 0;    //表示被点击的组的位置
     int selChildPos = 0;   //表示选中组中某一个位置
@@ -34,7 +37,7 @@ public class BaseSearchActivity extends BaseActivity{
     List<PinBuWordBean.ResultBean.ListBean> gridDatas;
     private SearchRightAdapter gridAdapter;
 
-    int totalpage;   //总页数
+    int totalpage;   //总页数，上限50个，我们设置48个
     int page = 1;   //当前获取的页数
     int pagesize = 48;  //默认一页获取48条数据
     String word = "";   //点击了左侧的哪个拼音或者部首
