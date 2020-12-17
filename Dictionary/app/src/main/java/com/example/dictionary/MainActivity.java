@@ -42,25 +42,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * 以license文件方式初始化
-     */
-    private void initAccessToken() {
-        OCR.getInstance(this).initAccessToken(new OnResultListener<AccessToken>() {
-            @Override
-            public void onResult(AccessToken accessToken) {
-                String token = accessToken.getAccessToken();
-                hasGotToken = true;
-            }
-
-            @Override
-            public void onError(OCRError error) {
-                error.printStackTrace();
-                alertText("licence方式获取token失败", error.getMessage());
-            }
-        }, getApplicationContext());
-    }
-
-    /**
      * 用明文ak，sk初始化
      */
     private void initAccessTokenWithAkSk() {
@@ -78,26 +59,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }, getApplicationContext(),  "GQksanaQ7nQ7B9Ld0yamBegp", "tb0xRzf2T2E12MLdeGtyxU6ubnNQBiYh");
     }
-
-    /**
-     * 自定义license的文件路径和文件名称，以license文件方式初始化
-     */
-    private void initAccessTokenLicenseFile() {
-        OCR.getInstance(this).initAccessToken(new OnResultListener<AccessToken>() {
-            @Override
-            public void onResult(AccessToken accessToken) {
-                String token = accessToken.getAccessToken();
-                hasGotToken = true;
-            }
-
-            @Override
-            public void onError(OCRError error) {
-                error.printStackTrace();
-                alertText("自定义文件路径licence方式获取token失败", error.getMessage());
-            }
-        }, "aip.license", getApplicationContext());
-    }
-
 
     private void alertText(final String title, final String message) {
         this.runOnUiThread(new Runnable() {
