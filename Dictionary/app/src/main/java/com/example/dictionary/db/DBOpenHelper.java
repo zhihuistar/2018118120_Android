@@ -20,6 +20,11 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         sql = "create table wordtb(_id integer primary key autoincrement,id varchar(20),zi varchar(4) unique not null,py varchar(10),"
                 + "wubi varchar(10),pinyin varchar(10),bushou varchar(4),bihua integer,jijie text,xiangjie text)";
         db.execSQL(sql);
+        //存储成语的表
+        sql = "create table cyutb(_id  integer primary key autoincrement,chengyu varchar(10) unique not null,bushou varchar(4)," +
+                "head varchar(4),pinyin varchar(30),chengyujs varchar(100),from_ text,example text,yufa varchar(30),ciyujs text," +
+                "yinzhengjs text,tongyi text,fanyi text)";
+        db.execSQL(sql);
     }
 
     @Override
