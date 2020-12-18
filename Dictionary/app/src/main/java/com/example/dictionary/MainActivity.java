@@ -148,6 +148,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.main_tv_chengyu:
+                intent.setClass(this,SearchChengyuActivity.class);
+                startActivity(intent);
                 break;
             case R.id.main_tv_tuwen:
                 if (!checkTokenStatus()) {
