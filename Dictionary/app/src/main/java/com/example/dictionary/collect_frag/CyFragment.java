@@ -20,8 +20,8 @@ import com.example.dictionary.db.DBManager;
 import java.util.ArrayList;
 import java.util.List;
 
-//收藏字的Fragment
-public class ZiFragment extends Fragment {
+//收藏成语的Fragment
+public class CyFragment extends Fragment {
     GridView gv;
     List<String> mDatas;
     private ArrayAdapter<String> adapter;
@@ -29,8 +29,8 @@ public class ZiFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_zi, container, false);
-        gv = view.findViewById(R.id.zifrag_gv);
+        View view =  inflater.inflate(R.layout.fragment_cy, container, false);
+        gv = view.findViewById(R.id.cyfrag_gv);
         mDatas = new ArrayList<>();
         adapter = new ArrayAdapter<>(getContext(), R.layout.item_search_pgv, R.id.item_sgv_tv, mDatas);
         gv.setAdapter(adapter);
@@ -48,7 +48,7 @@ public class ZiFragment extends Fragment {
     private void loadData() {
         List<String>list;
         mDatas.clear();
-        list = DBManager.queryAllInCollwordtb();
+        list = DBManager.queryAllCyuInCollcyutb();
         mDatas.addAll(list);
         adapter.notifyDataSetChanged();;
     }
@@ -57,9 +57,9 @@ public class ZiFragment extends Fragment {
         gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String zi = mDatas.get(position);
-                Intent intent = new Intent(getActivity(), WordInfoActivity.class);
-                intent.putExtra("zi",zi);
+                String cy = mDatas.get(position);
+                Intent intent = new Intent(getActivity(), ChengyuInfoActivity.class);
+                intent.putExtra("chengyu",cy);
                 startActivity(intent);
             }
         });

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.dictionary.collect_frag.CollectFragmentAdapter;
+import com.example.dictionary.collect_frag.CyFragment;
 import com.example.dictionary.collect_frag.ZiFragment;
 import com.google.android.material.tabs.TabLayout;
 
@@ -30,13 +31,15 @@ public class CollectionActivity extends AppCompatActivity {
     /* 初始化ViewPager页面的操作*/
     private void initPager() {
         mDatas = new ArrayList<>();
-        for (int i = 0; i < titles.length; i++) {
-            Fragment frag = new ZiFragment();
-            Bundle bundle = new Bundle();
-            bundle.putString("type",titles[i]);
-            frag.setArguments(bundle);
-            mDatas.add(frag);
-        }
+        Fragment frag = new ZiFragment();
+        Fragment frag2 = new CyFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("type","汉字");
+        frag.setArguments(bundle);
+        mDatas.add(frag);
+        bundle.putString("type","成语");
+        frag2.setArguments(bundle);
+        mDatas.add(frag2);
         CollectFragmentAdapter adapter = new CollectFragmentAdapter(getSupportFragmentManager(), mDatas, titles);
         collectVp.setAdapter(adapter);
         //将上下绑定
