@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.GridView;
 
+import com.example.dictionary.db.DBManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +21,6 @@ public class SearchChengyuActivity extends AppCompatActivity {
     GridView cyGv;
     List<String> mDatas;
     private ArrayAdapter<String> adapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +44,18 @@ public class SearchChengyuActivity extends AppCompatActivity {
             }
         });
     }
-
+    protected void onResume() {
+        super.onResume();
+        cyEt.setText("");
+        initDatas();
+    }
+    //初始化GridView显示的历史记录数据
+    private void initDatas() {
+        mDatas.clear();
+        List<String> list = DBManager.queryAllCyFromCyutb();
+        mDatas.addAll(list);
+        adapter.notifyDataSetChanged();
+    }
     public void onClick(View view){
         switch (view.getId()) {
             case R.id.searchcy_iv_back:
