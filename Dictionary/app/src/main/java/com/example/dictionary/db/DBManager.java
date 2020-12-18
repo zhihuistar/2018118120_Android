@@ -195,6 +195,17 @@ public class DBManager {
         }
         return false;
     }
+    //找收藏汉字表当中的所有汉字
+    public static List<String>queryAllInCollwordtb(){
+        String sql = "select * from collwordtb";
+        Cursor cursor = db.rawQuery(sql,null);
+        List<String>list = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            String zi = cursor.getString(cursor.getColumnIndex("zi"));
+            list.add(zi);
+        }
+        return list;
+    }
     //向收藏成语的表格当中传入数据
     public static void insertCyuToCollcyutb(String cy){
         ContentValues values = new ContentValues();
@@ -214,6 +225,17 @@ public class DBManager {
             return true;
         }
         return false;
+    }
+    //查找收藏成语表格中的所有成语
+    public static List<String>queryAllCyuInCollcyutb(){
+        String sql = "select * from collcyutb";
+        Cursor cursor = db.rawQuery(sql, null);
+        List<String>list = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            String chengyu = cursor.getString(cursor.getColumnIndex("chengyu"));
+            list.add(chengyu);
+        }
+        return list;
     }
     //查询成语表当中所有的记录
     public static List<String>queryAllCyFromCyutb(){
