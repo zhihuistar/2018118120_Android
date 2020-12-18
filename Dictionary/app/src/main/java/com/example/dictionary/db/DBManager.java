@@ -175,6 +175,17 @@ public class DBManager {
         }
         return null;
     }
+    //查询成语表当中所有的记录
+    public static List<String>queryAllCyFromCyutb(){
+        List<String>cyAllList = new ArrayList<>();
+        String sql = "select chengyu from cyutb";
+        Cursor cursor = db.rawQuery(sql, null);
+        while (cursor.moveToNext()) {
+            String chengyu = cursor.getString(cursor.getColumnIndex("chengyu"));
+            cyAllList.add(chengyu);
+        }
+        return cyAllList;
+    }
     //将字符串转换成List集合的方法
     public static List<String>stringToList(String msg){
         List<String>list = new ArrayList<>();
