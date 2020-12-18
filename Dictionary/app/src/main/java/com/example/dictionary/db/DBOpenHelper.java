@@ -25,6 +25,12 @@ public class DBOpenHelper extends SQLiteOpenHelper {
                 "head varchar(4),pinyin varchar(30),chengyujs varchar(100),from_ text,example text,yufa varchar(30),ciyujs text," +
                 "yinzhengjs text,tongyi text,fanyi text)";
         db.execSQL(sql);
+        //创建收藏汉字的表
+        sql = "create table collwordtb(_id integer primary key autoincrement,zi varchar(4) unique not null)";
+        db.execSQL(sql);
+        //创建收藏成语的表
+        sql = "create table collcyutb(_id integer primary key autoincrement,chengyu varchar(4) unique not null)";
+        db.execSQL(sql);
     }
 
     @Override
