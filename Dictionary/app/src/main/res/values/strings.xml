@@ -20,4 +20,6 @@
     <string name="setting_share" translatable="false">分享</string>
     <string name="setting_good" translatable="false">好评</string>
     <string name="setting_about" translatable="false">关于我们</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
