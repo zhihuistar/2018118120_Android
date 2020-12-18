@@ -1,5 +1,6 @@
 package com.example.dictionary.collect_frag;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,60 +8,74 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
 
+import com.example.dictionary.ChengyuInfoActivity;
 import com.example.dictionary.R;
+import com.example.dictionary.WordInfoActivity;
+import com.example.dictionary.db.DBManager;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ZiFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
+//收藏字的Fragment
 public class ZiFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public ZiFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ZiFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ZiFragment newInstance(String param1, String param2) {
-        ZiFragment fragment = new ZiFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    private String type;
+    GridView gv;
+    List<String> mDatas;
+    private ArrayAdapter<String> adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_zi, container, false);
+        View view =  inflater.inflate(R.layout.fragment_zi, container, false);
+        Bundle bundle = getArguments();
+        type = bundle.getString("type");  //获取当前Fragment显示的数据类型
+        gv = view.findViewById(R.id.zifrag_gv);
+        mDatas = new ArrayList<>();
+        adapter = new ArrayAdapter<>(getContext(), R.layout.item_search_pgv, R.id.item_sgv_tv, mDatas);
+        gv.setAdapter(adapter);
+//        设置GridView的点击事件
+        setGVListener();
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadData();
+    }
+
+    private void loadData() {
+        List<String>list;
+        mDatas.clear();
+        if (type.equals("汉字")) {
+            list = DBManager.queryAllInCollwordtb();
+        }else{
+            list = DBManager.queryAllCyuInCollcyutb();
+        }
+        mDatas.addAll(list);
+        adapter.notifyDataSetChanged();;
+    }
+
+    private void setGVListener() {
+        gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (type.equals("汉字")) {
+                    String zi = mDatas.get(position);
+                    Intent intent = new Intent(getActivity(), WordInfoActivity.class);
+                    intent.putExtra("zi",zi);
+                    startActivity(intent);
+                }else{
+                    String cy = mDatas.get(position);
+                    Intent intent = new Intent(getActivity(), ChengyuInfoActivity.class);
+                    intent.putExtra("chengyu",cy);
+                    startActivity(intent);
+                }
+            }
+        });
     }
 }
