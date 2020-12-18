@@ -8,4 +8,5 @@ public class CommonUtils {
 
     public static final String TABLE_PYWORDTB = "pywordtb";
     public static final String TABLE_WORDTB = "wordtb";
+    public static final String TABLE_CYUB = "cyutb";
 }
