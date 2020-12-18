@@ -11,5 +11,6 @@
     <string name="word_tv_basicjs" translatable="false">基本释义</string>
     <string name="word_tv_desjs" translatable="false">详细解释</string>
     <string name="indetify_img" translatable="false">图片识别</string>
+    <string name="chengyu_tv_history" translatable="false">历史记录</string>
     <string name="main_tv_yiju2" translatable="false">你每天都会忘记上千件事，何不把这件也忘了呢？</string>
 </resources>
