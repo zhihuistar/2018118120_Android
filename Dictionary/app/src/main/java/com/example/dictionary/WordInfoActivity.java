@@ -27,6 +27,8 @@ public class WordInfoActivity extends BaseActivity {
     private ArrayAdapter<String> adapter;
     private List<String> jijie;
     private List<String> xiangjie;
+    boolean isCollect = false;      //设置标志位，表示汉字是否被收藏
+    boolean isExist = false;    //判断这个汉字是否已经存在
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +44,18 @@ public class WordInfoActivity extends BaseActivity {
         jsLv.setAdapter(adapter);
         //加载网络数据
         loadData(url);
+        //调用判断是否已经收藏的方法
+        isExist = DBManager.isExistZiInCollwordtb(zi);
+        isCollect = isExist;   //记录初始状态
+        setCollectIvStyle();
+    }
+    //根据收藏的状态，改变星星的颜色
+    private void setCollectIvStyle() {
+        if (isCollect) {
+            collectIv.setImageResource(R.mipmap.ic_collection_fs);
+        }else{
+            collectIv.setImageResource(R.mipmap.ic_collection);
+        }
     }
     //表示获取数据成功时会调用的方法
     @Override
@@ -96,6 +110,8 @@ public class WordInfoActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.wordinfo_iv_collection:
+                isCollect = !isCollect;   //将收藏状态取反
+                setCollectIvStyle();
                 break;
             case R.id.word_tv_js:
                 jsTv.setTextColor(Color.RED);
@@ -112,6 +128,19 @@ public class WordInfoActivity extends BaseActivity {
                 mDatas.addAll(xiangjie);
                 adapter.notifyDataSetChanged();
                 break;
+        }
+    }
+    //activity被销毁时回调的方法，将汉字进行插入或者删除
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (isExist&&!isCollect) {
+            //原来数据收藏，后来不想收藏了，需要删除
+            DBManager.deleteZiToCollwordtb(zi);
+        }
+        if (!isExist&&isCollect) {
+            //原来不存在，后来需要收藏，要插入数据
+            DBManager.insertZiToCollwordtb(zi);
         }
     }
 }
