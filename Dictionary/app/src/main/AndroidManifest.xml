@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SettingActivity"></activity>
+        <activity android:name=".CollectionActivity"></activity>
+        <activity android:name=".SettingActivity" />
         <activity android:name=".ChengyuInfoActivity" />
         <activity android:name=".SearchChengyuActivity" />
         <activity android:name=".IdentifyImgActivity" />
