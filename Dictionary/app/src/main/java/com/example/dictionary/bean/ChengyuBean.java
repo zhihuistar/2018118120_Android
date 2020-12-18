@@ -53,6 +53,7 @@ public class ChengyuBean {
          * fanyi : ["一触即溃","丢盔弃甲"]
          */
 
+        private String chengyu;
         private String bushou;
         private String head;
         private String pinyin;
@@ -64,6 +65,32 @@ public class ChengyuBean {
         private String yinzhengjs;
         private List<String> tongyi;
         private List<String> fanyi;
+
+        public ResultBean(String chengyu, String bushou, String head, String pinyin, String chengyujs, String from_, String example, String yufa, String ciyujs, String yinzhengjs, List<String> tongyi, List<String> fanyi) {
+            this.chengyu = chengyu;
+            this.bushou = bushou;
+            this.head = head;
+            this.pinyin = pinyin;
+            this.chengyujs = chengyujs;
+            this.from_ = from_;
+            this.example = example;
+            this.yufa = yufa;
+            this.ciyujs = ciyujs;
+            this.yinzhengjs = yinzhengjs;
+            this.tongyi = tongyi;
+            this.fanyi = fanyi;
+        }
+
+        public ResultBean() {
+        }
+
+        public String getChengyu(){
+            return chengyu;
+        }
+
+        public void setChengyu(String chengyu){
+            this.chengyu = chengyu;
+        }
 
         public String getBushou() {
             return bushou;
