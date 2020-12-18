@@ -21,7 +21,7 @@ public class PatternUtils {
     }
     //剔除标点符号
     public static String removePunctuation(String value){
-        Pattern p = Pattern.compile("[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……& amp;*（）——+|{}【】‘；：”“’。，、？|-]");
+        Pattern p = Pattern.compile("[`~!@#$%^&*\\-※⭐()+=|{}':;',\\[\\].<>/?~！@#￥%……& amp;*（）——+|{}【】‘；：”“’。，、？|-]");
         Matcher matcher = p.matcher(value);
         String result = matcher.replaceAll("");
         return result;
@@ -29,7 +29,7 @@ public class PatternUtils {
 
     //剔除全部数字，字母，标点符号
     public static String removeAll(String value){
-        Pattern p = Pattern.compile("[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……& amp;*（）——+|{}【】‘；：”“’。，、？|a-zA-Z\\d]");
+        Pattern p = Pattern.compile("[[^\\u4e00-\\u9fa5]*]");
         Matcher matcher = p.matcher(value);
         String result = matcher.replaceAll("");
         return result;
