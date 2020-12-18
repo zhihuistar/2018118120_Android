@@ -24,6 +24,8 @@ public class SettingActivity extends AppCompatActivity {
 
                 break;
             case R.id.setting_tv_collect:
+                Intent intent = new Intent(this, CollectionActivity.class);
+                startActivity(intent);
                 break;
             case R.id.setting_tv_feedback:
 
