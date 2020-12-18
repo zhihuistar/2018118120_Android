@@ -175,6 +175,26 @@ public class DBManager {
         }
         return null;
     }
+    //向收藏汉字的表格当中传入数据
+    public static void insertZiToCollwordtb(String zi){
+        ContentValues values = new ContentValues();
+        values.put("zi",zi);
+        db.insert(CommonUtils.TABLE_COLLECT_WORDTB,null,values);
+    }
+    //删除收藏表格当中的数据
+    public static void deleteZiToCollwordtb(String zi){
+        String sql = "delete from collwordtb where zi = ?";
+        db.execSQL(sql,new Object[]{zi});
+    }
+    //查找此汉字是否收藏在表格当中
+    public static boolean isExistZiInCollwordtb(String zi){
+        String sql = "select * from collwordtb where zi = ?";
+        Cursor cursor = db.rawQuery(sql, new String[]{zi});
+        if (cursor.getCount()>0) {
+            return true;
+        }
+        return false;
+    }
     //查询成语表当中所有的记录
     public static List<String>queryAllCyFromCyutb(){
         List<String>cyAllList = new ArrayList<>();
