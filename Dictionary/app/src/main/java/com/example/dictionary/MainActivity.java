@@ -130,6 +130,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent();
         switch (view.getId()) {
             case R.id.main_iv_setting:
+                intent.setClass(this,SettingActivity.class);
+                startActivity(intent);
                 break;
             case R.id.main_iv_search:
                 String text = ziEt.getText().toString();
