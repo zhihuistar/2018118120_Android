@@ -65,6 +65,15 @@ public class ChengyuInfoActivity extends BaseActivity {
             Toast.makeText(this,"此成语无法查到，请重新查询！",Toast.LENGTH_SHORT).show();
         }
     }
+    //网络加载数据失败时，会调用的方法
+    @Override
+    public void onError(Throwable ex, boolean isOnCallback) {
+        //获取数据库当中缓存的数据
+        ChengyuBean.ResultBean bean = DBManager.queryCyFromCyutb(chengyu);
+        if (bean!=null) {
+            showDataToView(bean);
+        }
+    }
     //将获取到的数据显示在View上
     private void showDataToView(ChengyuBean.ResultBean cyBean) {
         String chengyu = cyBean.getChengyu();
