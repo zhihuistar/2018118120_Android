@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dictionary.bean.ChengyuBean;
+import com.example.dictionary.db.DBManager;
 import com.example.dictionary.utils.MyGridView;
 import com.example.dictionary.utils.URLUtils;
 import com.google.gson.Gson;
@@ -57,7 +58,7 @@ public class ChengyuInfoActivity extends BaseActivity {
             //因数据源当中不包括成语本身，但是后期要插入数据库，所以需要保存这个成语
             cyBean.setChengyu(chengyu);
             // 插入到数据库当中
-
+            DBManager.insertCyToCyutb(cyBean);
             // 显示数据
             showDataToView(cyBean);
         }else{

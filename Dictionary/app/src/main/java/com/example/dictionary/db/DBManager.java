@@ -151,6 +151,30 @@ public class DBManager {
         values.put("fanyi",fy);
         db.insert(CommonUtils.TABLE_CYUB,null,values);
     }
+    //根据传入的成语，查看详情内容
+    public static ChengyuBean.ResultBean queryCyFromCyutb(String cyu){
+        String sql = "select * from cyutb where chengyu = ?";
+        Cursor cursor = db.rawQuery(sql, new String[]{cyu});
+        if (cursor.moveToFirst()) {
+            String chengyu = cursor.getString(cursor.getColumnIndex("chengyu"));
+            String bushou = cursor.getString(cursor.getColumnIndex("bushou"));
+            String head = cursor.getString(cursor.getColumnIndex("head"));
+            String pinyin = cursor.getString(cursor.getColumnIndex("pinyin"));
+            String chengyujs = cursor.getString(cursor.getColumnIndex("chengyujs"));
+            String from_ = cursor.getString(cursor.getColumnIndex("from_"));
+            String example = cursor.getString(cursor.getColumnIndex("example"));
+            String yufa = cursor.getString(cursor.getColumnIndex("yufa"));
+            String ciyujs = cursor.getString(cursor.getColumnIndex("ciyujs"));
+            String yinzhengjs = cursor.getString(cursor.getColumnIndex("yinzhengjs"));
+            String tongyi = cursor.getString(cursor.getColumnIndex("tongyi"));
+            String fanyi = cursor.getString(cursor.getColumnIndex("fanyi"));
+            List<String> tylist = stringToList(tongyi);
+            List<String> fyList = stringToList(fanyi);
+            ChengyuBean.ResultBean bean = new ChengyuBean.ResultBean(chengyu, bushou, head, pinyin, chengyujs, from_, example, yufa, ciyujs, yinzhengjs, tylist, fyList);
+            return bean;
+        }
+        return null;
+    }
     //将字符串转换成List集合的方法
     public static List<String>stringToList(String msg){
         List<String>list = new ArrayList<>();
