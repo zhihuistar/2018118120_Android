@@ -2,6 +2,7 @@ package com.example.dictionary;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -32,11 +33,13 @@ public class SearchChengyuActivity extends AppCompatActivity {
         //设置GridView的点击事件
         setGVListener();
     }
-    /* GridView每一个Item点击事件的方法*/
+    //GridView每一个Item点击事件的方法
     private void setGVListener() {
         cyGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String msg = mDatas.get(position);
+                startPage(msg);
             }
         });
     }
@@ -55,5 +58,11 @@ public class SearchChengyuActivity extends AppCompatActivity {
                 startPage(text);
                 break;
         }
+    }
+    //携带成语跳转到下一个页面
+    private void startPage(String text) {
+        Intent intent = new Intent(this, ChengyuInfoActivity.class);
+        intent.putExtra("chengyu",text);
+        startActivity(intent);
     }
 }
