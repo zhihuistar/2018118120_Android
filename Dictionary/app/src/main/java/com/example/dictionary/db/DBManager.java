@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.example.dictionary.bean.ChengyuBean;
 import com.example.dictionary.bean.PinBuWordBean;
 import com.example.dictionary.bean.WordBean;
 import com.example.dictionary.utils.CommonUtils;
@@ -130,6 +131,25 @@ public class DBManager {
             return bean;
         }
         return null;
+    }
+    //插入数据到成语表当中
+    public static void insertCyToCyutb(ChengyuBean.ResultBean bean){
+        ContentValues values = new ContentValues();
+        values.put("chengyu",bean.getChengyu());
+        values.put("bushou",bean.getBushou());
+        values.put("head",bean.getHead());
+        values.put("pinyin",bean.getPinyin());
+        values.put("chengyujs",bean.getChengyujs());
+        values.put("from_",bean.getFrom_());
+        values.put("example",bean.getExample());
+        values.put("yufa",bean.getYufa());
+        values.put("ciyujs",bean.getCiyujs());
+        values.put("yinzhengjs",bean.getYinzhengjs());
+        String ty = listToString(bean.getTongyi());
+        values.put("tongyi",ty);
+        String fy = listToString(bean.getFanyi());
+        values.put("fanyi",fy);
+        db.insert(CommonUtils.TABLE_CYUB,null,values);
     }
     //将字符串转换成List集合的方法
     public static List<String>stringToList(String msg){
