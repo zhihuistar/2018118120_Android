@@ -7,6 +7,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.dictionary.collect_frag.CollectFragmentAdapter;
 import com.example.dictionary.collect_frag.ZiFragment;
 import com.google.android.material.tabs.TabLayout;
 
@@ -36,6 +37,10 @@ public class CollectionActivity extends AppCompatActivity {
             frag.setArguments(bundle);
             mDatas.add(frag);
         }
+        CollectFragmentAdapter adapter = new CollectFragmentAdapter(getSupportFragmentManager(), mDatas, titles);
+        collectVp.setAdapter(adapter);
+        //将上下绑定
+        tabLayout.setupWithViewPager(collectVp);
     }
 
     public void onClick(View view) {
