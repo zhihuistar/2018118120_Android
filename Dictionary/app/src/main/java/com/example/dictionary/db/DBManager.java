@@ -181,7 +181,7 @@ public class DBManager {
         values.put("zi",zi);
         db.insert(CommonUtils.TABLE_COLLECT_WORDTB,null,values);
     }
-    //删除收藏表格当中的数据
+    //删除收藏汉字表格当中的数据
     public static void deleteZiToCollwordtb(String zi){
         String sql = "delete from collwordtb where zi = ?";
         db.execSQL(sql,new Object[]{zi});
@@ -190,6 +190,26 @@ public class DBManager {
     public static boolean isExistZiInCollwordtb(String zi){
         String sql = "select * from collwordtb where zi = ?";
         Cursor cursor = db.rawQuery(sql, new String[]{zi});
+        if (cursor.getCount()>0) {
+            return true;
+        }
+        return false;
+    }
+    //向收藏成语的表格当中传入数据
+    public static void insertCyuToCollcyutb(String cy){
+        ContentValues values = new ContentValues();
+        values.put("chengyu",cy);
+        db.insert(CommonUtils.TABLE_COLLECT_CYUTB,null,values);
+    }
+    //删除收藏成语表格当中的数据
+    public static void deleteCyuToCollcyutb(String cy){
+        String sql = "delete from collcyutb where chengyu = ?";
+        db.execSQL(sql,new Object[]{cy});
+    }
+    //查找此成语是否收藏在表格当中
+    public static boolean isExistCyuInCollcyutb(String cy){
+        String sql = "select * from collcyutb where chengyu = ?";
+        Cursor cursor = db.rawQuery(sql, new String[]{cy});
         if (cursor.getCount()>0) {
             return true;
         }

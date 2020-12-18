@@ -28,6 +28,8 @@ public class ChengyuInfoActivity extends BaseActivity {
     private String chengyu;
     List<String> tongyiList,fanyinList;    //GridView的数据源
     ArrayAdapter<String> tyAdapter,fyAdapter;
+    boolean isCollect = false;      //设置标志位，表示汉字是否被收藏
+    boolean isExist = false;    //判断这个汉字是否已经存在
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,17 @@ public class ChengyuInfoActivity extends BaseActivity {
         chengyu = intent.getStringExtra("chengyu");
         String url = URLUtils.getChengyuurl(chengyu);
         loadData(url);
+        isExist = DBManager.isExistCyuInCollcyutb(chengyu);
+        isCollect = isExist;
+        setCollectIvStyle();
+    }
+    //根据收藏的状态，改变星星的颜色
+    private void setCollectIvStyle() {
+        if (isCollect) {
+            collectIv.setImageResource(R.mipmap.ic_collection_fs);
+        }else{
+            collectIv.setImageResource(R.mipmap.ic_collection);
+        }
     }
     //为GridView设置加载数据的适配器和数据源
     private void initAdapter() {
@@ -129,7 +142,18 @@ public class ChengyuInfoActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.cyinfo_iv_collection:
+                isCollect = !isCollect;
+                setCollectIvStyle();
                 break;
+        }
+    }
+    protected void onDestroy() {
+        super.onDestroy();
+        if (isExist&&!isCollect) {
+            DBManager.deleteCyuToCollcyutb(chengyu);
+        }
+        if (!isExist&&isCollect) {
+            DBManager.insertCyuToCollcyutb(chengyu);
         }
     }
 }
