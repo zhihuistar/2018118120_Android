@@ -28,10 +28,12 @@ public class SettingActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.setting_tv_feedback:
-
+                intent = new Intent(this, WaitActivity.class);
+                startActivity(intent);
                 break;
             case R.id.setting_tv_good:
-
+                intent = new Intent(this, WaitActivity.class);
+                startActivity(intent);
                 break;
             case R.id.setting_tv_share:
                 shareSoftware();
