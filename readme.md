@@ -72,3 +72,9 @@ https://github.com/zhihuistar/2018118120_Android/tree/master/chapter7/BroadcastB
 
 实验报告：https://github.com/zhihuistar/2018118120_Android/blob/master/chapter12/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A12.md
 
+# Dictionary 大作业——中华字典APP
+
+项目位置：https://github.com/zhihuistar/2018118120_Android/tree/master/Dictionary
+
+实验报告：https://github.com/zhihuistar/2018118120_Android/blob/master/Dictionary/%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A.md
+
