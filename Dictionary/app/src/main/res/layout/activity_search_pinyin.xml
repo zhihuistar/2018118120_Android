@@ -14,9 +14,9 @@
             android:id="@+id/searchpy_iv_back"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="15dp"
             android:onClick="onClick"
-            android:src="@mipmap/ic_back"/>
+            android:src="@mipmap/ic_back1"/>
         <TextView
             android:id="@+id/searchpy_tv"
             style="@style/titleTvStyle"
