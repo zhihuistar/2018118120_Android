@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -131,6 +134,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public void onClick(View view) {
         Intent intent = new Intent();
+        ConnectivityManager conManager=(ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = conManager.getActiveNetworkInfo();
         switch (view.getId()) {
             case R.id.main_iv_setting:
                 intent.setClass(this,SettingActivity.class);
@@ -158,6 +163,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.main_tv_tuwen:
                 if (!checkTokenStatus()) {
+                    return;
+                }
+                else if(networkInfo == null){
+                    Toast.makeText(MainActivity.this, "网络错误，请检查您的网络！", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 intent.setClass(MainActivity.this, CameraActivity.class);
