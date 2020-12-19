@@ -29,6 +29,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     TextView pyTv,bsTv,cyuTv,twenTv,juziTv;
     EditText ziEt;
+    private String[] yiju2;     //每日一句列表
     private boolean hasGotToken = false;
     private AlertDialog.Builder alertDialog;
     private static final int REQUEST_CODE_GENERAL_BASIC = 106;
@@ -38,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initView();
         initAccessTokenWithAkSk();
+        yiju2 = this.getResources().getStringArray(R.array.main_tv_yiju2);
+        int id = (int) (Math.random()*(yiju2.length-1));//随机产生一个index索引
+        juziTv.setText(yiju2[id]);
     }
     private boolean checkTokenStatus() {
         if (!hasGotToken) {

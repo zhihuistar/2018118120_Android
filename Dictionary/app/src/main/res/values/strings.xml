@@ -13,13 +13,19 @@
     <string name="indetify_img" translatable="false">图片识别</string>
     <string name="chengyu_tv_history" translatable="false">历史记录</string>
     <string name="chengyu_tv_info" translatable="false">成语详情</string>
-    <string name="main_tv_yiju2" translatable="false">你每天都会忘记上千件事，何不把这件也忘了呢？</string>
+    <string-array name="main_tv_yiju2" translatable="false">
+        <item>你每天都会忘记上千件事，何不把这件也忘了呢？</item>
+        <item>知人者智，自知者明。胜人者有力，自胜者强。</item>
+        <item>自己活着，就是为了使别人过得更美好。</item>
+        <item>只有把抱怨环境的心情，化为上进的力量，才是成功的保证。</item>
+        <item>学而不思则罔，思而不学则殆。</item>
+        <item>卓越的人一大优点是：在不利与艰难的遭遇里百折不饶。</item>
+        <item>假如生活欺骗了你，不要悲伤，不要心急！快乐的日子将会来临！</item>
+    </string-array>
     <string name="setting" translatable="false">设置</string>
     <string name="setting_collect" translatable="false">收藏</string>
     <string name="setting_feedback" translatable="false">反馈</string>
     <string name="setting_share" translatable="false">分享</string>
     <string name="setting_good" translatable="false">好评</string>
     <string name="setting_about" translatable="false">关于我们</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
